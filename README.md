@@ -18,3 +18,11 @@ Data Sources and References:
 https://quickstats.nass.usda.gov/
 https://catalog.data.gov/dataset/disaster-declaration
 https://iopscience.iop.org/article/10.1088/1748-9326/aae159
+
+
+To easily find crops:
+https://www.nass.usda.gov/Quick_Stats/Lite/
+
+
+To correspond counties with different spelling / naming convention
+https://www.census.gov/library/reference/code-lists/ansi.html#par_statelist
