@@ -27,7 +27,6 @@ import os,sys
 soybean_yield = pd.read_csv('dat/clean_yield.csv')
 fertilizers = pd.read_csv('dat/fertilizers_cleaned.csv')
 herbicides = pd.read_csv('dat/herbicides_cleaned.csv')
-
 herbicides.dropna(axis=1,inplace=True)
 
 
@@ -89,3 +88,42 @@ rf.score(X_test,y_test)
 linreg.coef_
 
 X_train.columns
+from sklearn.datasets import make_classification
+from sklearn.ensemble import ExtraTreesRegressor
+import matplotlib.pyplot as plt
+# Build a classification task using 3 informative features
+
+# Build a forest and compute the feature importances
+forest = ExtraTreesRegressor(n_estimators=1000,
+                              random_state=0)
+ 
+forest.fit(X_train, y_train)
+importances = forest.feature_importances_
+std = np.std([tree.feature_importances_ for tree in forest.estimators_],
+             axis=0)
+indices = np.argsort(importances)[::-1]
+
+# Print the feature ranking
+#print("Feature ranking:")
+
+
+#%%
+col_names = []
+for f in range(X.shape[1]):
+   # print("%d. feature %d (%f)" % (f + , indices[f], importances[indices[f]]))
+  #  print(X.columns[indices[f]])
+    col_names.append(X.columns[indices[f]])
+#%%
+
+
+# Plot the feature importances of the forest
+plt.figure()
+plt.title("Feature importances")
+plt.bar(range(X.shape[1]), importances[indices],
+       color="r", yerr=std[indices], align="center")
+plt.xticks(range(X.shape[1]), col_names,rotation=90)
+plt.xlim([-1, X.shape[1]])
+plt.show()
+#%%
+
+forest.score(X_test,y_test)
