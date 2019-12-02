@@ -53,7 +53,7 @@ fertilizers['FERTILIZER: (PHOSPHATE)APPLICATIONS in LB'] = fertilizers['FERTILIZ
 fertilizers.isna().sum()
 #current technique, fill na with -999
 
-fertilizers.fillna(-999,inplace=True)
+ngfertilizers.fillna(-999,inplace=True)
 
 fertinfo = fertilizers.describe()
 
